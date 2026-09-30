@@ -1,6 +1,5 @@
 package lw01.unguided;
 import java.util.Scanner;
-import java.util.List;
 
 
 public class Main {

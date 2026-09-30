@@ -16,4 +16,4 @@ public class MonoPrint extends PrintJob {
     public String label() {
         return "Mono";
     }
-}
+}   

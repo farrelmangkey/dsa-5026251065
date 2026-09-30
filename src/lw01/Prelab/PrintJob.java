@@ -38,3 +38,4 @@ public abstract class PrintJob implements Chargeable {
         return id + " | " + label() + " | " + calculateCharge();
     }
 }
+    

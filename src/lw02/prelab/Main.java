@@ -21,6 +21,8 @@ public class Main {
 
         }
 
+        scanner.close();
+
         LinkedList <String> customer = new LinkedList<>();
 
         for (int i = 0; i < transactions.size(); i++){
