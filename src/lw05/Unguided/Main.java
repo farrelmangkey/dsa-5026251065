@@ -173,7 +173,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        Scanner sc = new Scanner(Main.class.getResourceAsStream("metro2.txt"));
+        Scanner sc = new Scanner(Main.class.getResourceAsStream("metro1.txt"));
         size = sc.nextInt();
         names = new String[size];
         graph = new int[size][size];
@@ -202,27 +202,19 @@ public class Main {
         List<Integer> bfsOrder = bfs(start);
         printLevels(bfsOrder);
 
-        System.out.println("=== Fewest Stops Route from " + names[start] + " to " + names[dest] + " ===");
-        List<Integer> fewestStopsPath = buildPath(dest, bfsPrev, start);
-        printPath(fewestStopsPath);
-
-        System.out.println("Stops: " + (fewestStopsPath.size() - 1) + " | Time: " + pathTime(fewestStopsPath) + " min");
+        List<Integer> bfsPath = buildPath(dest, bfsPrev, start);
+        printSummary("Fewest Stops Route from " + names[start] + " to " + names[dest], bfsPath);
 
         dijkstraAlg(start);
-        System.out.println("=== Fastest Route from " + names[start] + " to " + names[dest] + " ===");
-        List<Integer> fastestPath = buildPath(dest, dijkstraPrev, start);   
-        printPath(fastestPath);
-
-        System.out.println("Stops: " + (fastestPath.size() - 1) + " | Time: " + pathTime(fastestPath) + " min");
+        List<Integer> dijksraPath = buildPath(dest, dijkstraPrev, start);   
+        printSummary("Fastest Route from " + names[start] + " to " + names[dest], dijksraPath);
 
         System.out.println("=== Comparison ===");
-        if (fewestStopsPath.size() == fastestPath.size()){
+        if (bfsPath.size() == dijksraPath.size()){
             System.out.println("Both routes are the same");
         } else {
-        System.out.println("The fastest routes saves " + (pathTime(fewestStopsPath) - pathTime(fastestPath)) + " min but needs " + (fastestPath.size() - fewestStopsPath.size()) + " more stops.");
+        System.out.println("The fastest routes saves " + (pathTime(bfsPath) - pathTime(dijksraPath)) + " min but needs " + (dijksraPath.size() - bfsPath.size()) + " more stops.");
         }
-
         sc.close();
-
     }
 }
